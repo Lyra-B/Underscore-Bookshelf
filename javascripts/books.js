@@ -7,6 +7,11 @@ function handleResponse(response){
     var imgElement = $(html);
     $("#bookshelf").append(imgElement);
     $("img").addClass("book");
-
   })
+
+    _.filter(response.items, function(i){
+    i.volumeInfo.averageRating>=4;
+    i.
+    $(book.append("span", "☆"));
+    })
 }
