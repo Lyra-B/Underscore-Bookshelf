@@ -9,9 +9,8 @@ function handleResponse(response){
     $("img").addClass("book");
   })
 
-    _.filter(response.items, function(i){
-    i.volumeInfo.averageRating>=4;
-    i.
-    $(book.append("span", "☆"));
-    })
+  _.filter(response.items, function(i){
+  var rating = i.volumeInfo.averageRating;
+  if (rating==4 || rating==5){return i};
+  })
 }
