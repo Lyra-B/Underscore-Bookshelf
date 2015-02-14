@@ -28,13 +28,22 @@ h1 {
 img {
 	/*position:absolute;*/
 	opacity:0.99;
-  /*display: block;*/
+ /* display: block;*/
 }
 
 span {
-	z-index:1;
+	width:50px;
+	height:50px;
+	/*z-index:1;*/
 	color:red;
 	position:absolute;
+	bottom: 0px;
+	right:0px;
+	display:block;
+	background: url(../img/Star_insigna.png) no-repeat bottom right;
+	background-size: 40px 40px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .book {

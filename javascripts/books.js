@@ -34,8 +34,8 @@ function handleResponse(response){
       }
     }
   });
-  $(".hot").append("<span class='ui-icon ui-icon-star'></span>");
-
+  $(".hot").append("<span></span>");
+  //"<span class='ui-icon ui-icon-star'></span>"
   // if (.book).children()
   // _.each(highRated, function(i){
   //
