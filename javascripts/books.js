@@ -21,12 +21,12 @@ function handleResponse(response){
   //iterating over the highRated Array and then iterating again over the dom
   //div elements(with a class .book) and matching rating using an if statement
   //that examines if the image is of the same book with the rating.
-  _.each (highRated, function(k){
+  _.each (highRated, function(highRatedBooks){
     // console.log("");
     var book_array = $('.book')
     for(var i = 0; i < book_array.length; i++) {
       console.log("");
-      if ($(book_array[i]).find("img").attr("src") === k.volumeInfo.imageLinks.thumbnail){
+      if ($(book_array[i]).find("img").attr("src") === highRatedBooks.volumeInfo.imageLinks.thumbnail){
         $(book_array[i]).addClass("hot");
       }
     }
@@ -37,24 +37,28 @@ function handleResponse(response){
   $(".hot").append("<span></span>");
   //"<span class='ui-icon ui-icon-star'></span>"
 
-
-  //In order to to display a book that matches a certain title without
-  //redirecting to a new page I have to find a way to cancel the actions of the
-  //previous loops
-
-  //Then I possibly have to iterate over the titles stored in the objects and
-  //display only the books that match the title.
-  // var FilterByTitle = function(){
-    //var title = $("#titleForm").val();
-  // }
-}
+  //.submit doesn't work because the dom isn't yet fully loaded.
+//$( document ).ready(function() handles this problem.
+  $( document ).ready(function() {
 //.submit jquery function in order to submit the value
     $( "#titleForm" ).submit(function(event) {
-      alert("Success!");
+      var bookTitle = $("#searchBox").val();
 //.preventDefault(); jquery function in order to prevent the form from \
 // sending a http request
       event.preventDefault();
+      //a for loop in order to match the submit value to the book titles
+      for(var i=0; i<response.items.length; i++){
+        if (bookTitle === response.items[i].volumeInfo.title){
+          alert(bookTitle);
+        }else {
+          alert("No matches");
+        }
+      }
     });
+  });
+}
+
+//Harry Potter and the Sorcerer's Stone
 
   // Used information by the the following urls:
   //http://stackoverflow.com/questions/6354149/css-divs-overlapping-how-do-i
