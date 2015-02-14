@@ -44,8 +44,17 @@ function handleResponse(response){
 
   //Then I possibly have to iterate over the titles stored in the objects and
   //display only the books that match the title.
-
+  // var FilterByTitle = function(){
+    //var title = $("#titleForm").val();
+  // }
 }
+//.submit jquery function in order to submit the value
+    $( "#titleForm" ).submit(function(event) {
+      alert("Success!");
+//.preventDefault(); jquery function in order to prevent the form from \
+// sending a http request
+      event.preventDefault();
+    });
 
   // Used information by the the following urls:
   //http://stackoverflow.com/questions/6354149/css-divs-overlapping-how-do-i
@@ -57,6 +66,8 @@ function handleResponse(response){
   //http://reference.sitepoint.com/css/displaypositionfloat
   //https://developer.mozilla.org/en-US/docs/Web/CSS/position
   //http://api.jquery.com/checkbox-selector/
+  //http://api.jquery.com/val/
+  //http://api.jquery.com/submit/
 
 
 
