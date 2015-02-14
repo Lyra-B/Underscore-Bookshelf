@@ -28,22 +28,24 @@ h1 {
 img {
 	/*position:absolute;*/
 	opacity:0.99;
- /* display: block;*/
+  /*display: block;*/
 }
 
 span {
 	width:50px;
 	height:50px;
-	/*z-index:1;*/
-	color:red;
-	position:absolute;
+	/*z-index:1;*//*tried to use z-index but it didn't work out*/
+	position:absolute;/*by setting the position to absolute and givind bottom and
+	right dimensions to the span, the block ignores the existance of the inline
+	element of the image */
 	bottom: 0px;
 	right:0px;
-	display:block;
+	display:block;/*span by default is inline*/
 	background: url(../img/Star_insigna.png) no-repeat bottom right;
-	background-size: 40px 40px;
-	margin-left: auto;
-	margin-right: auto;
+	/*I didn't know that I can set an image through css. Inspired by the #bookshelf*/
+	/*Picked a transparent image*/
+	background-size: 40px 40px;/*if we do not set a background-size the image
+	is not displayed. Why?*/
 }
 
 .book {

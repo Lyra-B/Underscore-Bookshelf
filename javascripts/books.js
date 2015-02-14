@@ -10,13 +10,6 @@ function handleResponse(response){
     $("#bookshelf div").addClass("book");
   });
 
-  // var spanF = function(){
-  //   var starTempl = _.template("<span class='ui-icon ui-icon-star'></span>");
-  //   var star = $(starTempl);
-  //   $(".book").append(star);
-  // }
-  //$i.append("<span class='ui-icon ui-icon-star'></span>");
-
   var highRated =_.filter(response.items, function(i){
     var rating = i.volumeInfo.averageRating;
     if (rating==4 || rating==5){
@@ -24,6 +17,10 @@ function handleResponse(response){
     }
   });
 
+
+  //iterating over the highRated Array and then iterating again over the dom
+  //div elements(with a class .book) and matching rating using an if statement
+  //that examines if the image is of the same book with the rating.
   _.each (highRated, function(k){
     // console.log("");
     var book_array = $('.book')
@@ -34,23 +31,32 @@ function handleResponse(response){
       }
     }
   });
+
+  //finally appending the span which will contain the star only in the divs that
+  // have the class "hot".
   $(".hot").append("<span></span>");
   //"<span class='ui-icon ui-icon-star'></span>"
-  // if (.book).children()
-  // _.each(highRated, function(i){
-  //
 
 
-    // $("span").addClass("ui-icon ui-icon-star")
+  //In order to to display a book that matches a certain title without
+  //redirecting to a new page I have to find a way to cancel the actions of the
+  //previous loops
 
+  //Then I possibly have to iterate over the titles stored in the objects and
+  //display only the books that match the title.
 
-  // Inspired by the the following urls:
+}
+
+  // Used information by the the following urls:
   //http://stackoverflow.com/questions/6354149/css-divs-overlapping-how-do-i
   //-force-one-above-the-other
   //http://api.jqueryui.com/zIndex/
   //http://philipwalton.com/articles/what-no-one-told-you-about-z-index/
   //http://api.jqueryui.com/theming/icons/
   //http://api.jquery.com/attribute-equals-selector/
+  //http://reference.sitepoint.com/css/displaypositionfloat
+  //https://developer.mozilla.org/en-US/docs/Web/CSS/position
+  //http://api.jquery.com/checkbox-selector/
 
 
-}
+
