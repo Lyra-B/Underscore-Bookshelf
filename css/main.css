@@ -25,6 +25,15 @@ h1 {
 	background: url(../img/bookshelf.png) no-repeat top left;
 }
 
+img {
+ display: block;
+
+}
+
+.book {
+	display: inline-block;
+}
+
 #todo {
 	position: absolute;
 	top: 0;
