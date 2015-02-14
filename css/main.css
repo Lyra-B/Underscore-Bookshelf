@@ -26,15 +26,16 @@ h1 {
 }
 
 img {
-	position:relative;
+	/*position:absolute;*/
 	opacity:0.99;
   /*display: block;*/
 }
 
-/*span {
+span {
+	z-index:1;
 	color:red;
-	position:relative;
-}*/
+	position:absolute;
+}
 
 .book {
 	position:relative;
