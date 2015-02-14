@@ -1,8 +1,9 @@
 function handleResponse(response){
   //console.log(response.items);
+  var view = _.template("<div><img src= '<%= image %>' /></div>");
+
   _.each(response.items, function(i) {
     //var imageLink = i.volumeInfo.imageLinks.thumbnail;
-    var view = _.template("<div><img src= '<%= image %>' /></div>");
     // var div = _.template("<div>'<%= view %>'</div>")
     var html = view({ image: i.volumeInfo.imageLinks.thumbnail});
     var imgElement = $(html);
@@ -49,10 +50,16 @@ function handleResponse(response){
       //a for loop in order to match the submit value to the book titles
       for(var i=0; i<response.items.length; i++){
         if (bookTitle === response.items[i].volumeInfo.title){
-          alert(bookTitle);
-        }else {
-          alert("No matches");
+          $("#bookshelf").empty();
+          var html = view({ image: response.items[i].volumeInfo.imageLinks.thumbnail});
+          var imgElement = $(html);
+          $("#bookshelf").append(imgElement);
+          $("#bookshelf div").addClass("book");
+          //alert(bookTitle);
         }
+        // }else {
+        //   alert("No matches");
+        // }
       }
     });
   });
