@@ -10,8 +10,35 @@ function handleResponse(response){
     $("div").addClass("book");
   })
 
-  _.filter(response.items, function(i){
-  var rating = i.volumeInfo.averageRating;
-  if (rating==4 || rating==5){return i};
+  // var spanF = function(){
+  //   var starTempl = _.template("<span class='ui-icon ui-icon-star'></span>");
+  //   var star = $(starTempl);
+  //   $(".book").append(star);
+  // }
+  //$i.append("<span class='ui-icon ui-icon-star'></span>");
+
+  var highRated =_.filter(response.items, function(i){
+    var rating = i.volumeInfo.averageRating;
+    var highRated = [];
+    if (rating==4 || rating==5){
+      i;
+    };
   })
+
+  _.each(highRated, function(i){
+    $(i.book).append("<span class='ui-icon ui-icon-star'></span>");
+  })
+
+
+    // $("span").addClass("ui-icon ui-icon-star")
+
+
+  // Inspired by the the urls below:
+  //http://stackoverflow.com/questions/6354149/css-divs-overlapping-how-do-i
+  //-force-one-above-the-other
+  //http://api.jqueryui.com/zIndex/
+  //http://philipwalton.com/articles/what-no-one-told-you-about-z-index/
+  //http://api.jqueryui.com/theming/icons/
+
+
 }

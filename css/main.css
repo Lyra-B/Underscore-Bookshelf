@@ -26,11 +26,18 @@ h1 {
 }
 
 img {
- display: block;
-
+	position:relative;
+	opacity:0.99;
+  /*display: block;*/
 }
 
+/*span {
+	color:red;
+	position:relative;
+}*/
+
 .book {
+	position:relative;
 	display: inline-block;
 }
 
