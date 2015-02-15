@@ -17,16 +17,14 @@ function handleResponse(response){
       return i;
     }
   });
-
-
   //iterating over the highRated Array and then iterating again over the dom
   //div elements(with a class .book) and matching rating using an if statement
   //that examines if the image is of the same book with the rating.
+  var book_array = $('.book')
   _.each (highRated, function(highRatedBooks){
     // console.log("");
-    var book_array = $('.book')
     for(var i = 0; i < book_array.length; i++) {
-      console.log("");
+      //console.log("");
       if ($(book_array[i]).find("img").attr("src") === highRatedBooks.volumeInfo.imageLinks.thumbnail){
         $(book_array[i]).addClass("hot");
       }
@@ -39,33 +37,39 @@ function handleResponse(response){
   //"<span class='ui-icon ui-icon-star'></span>"
 
   //.submit doesn't work because the dom isn't yet fully loaded.
-//$( document ).ready(function() handles this problem.
+  //$( document ).ready(function() handles this problem.
   $( document ).ready(function() {
 //.submit jquery function in order to submit the value
     $( "#titleForm" ).submit(function(event) {
       var bookTitle = $("#searchBox").val();
 //.preventDefault(); jquery function in order to prevent the form from \
-// sending a http request
+// sending a http request and refreshing the page
       event.preventDefault();
+      // $("#bookshelf").children().show();
+      var imageArray = $("#bookshelf").children().children();
+      $(imageArray).hide();
       //a for loop in order to match the submit value to the book titles
       for(var i=0; i<response.items.length; i++){
         if (bookTitle === response.items[i].volumeInfo.title){
-          $("#bookshelf").empty();
-          var html = view({ image: response.items[i].volumeInfo.imageLinks.thumbnail});
-          var imgElement = $(html);
-          $("#bookshelf").append(imgElement);
-          $("#bookshelf div").addClass("book");
-          //alert(bookTitle);
+          console.log("");
+          var imageToShow = $(imageArray).filter("img").attr("src", response.items[i].volumeInfo.imageLinks.thumbnail)
+          // $(imageArray).filter(function(img){
+          //   $img.attr("src") === response.items[i].volumeInfo.imageLinks.thumbnail;
+          // });
+          $(imageToShow[0]).show();
         }
-        // }else {
-        //   alert("No matches");
-        // }
       }
     });
   });
 }
 
+
+//$(imageArray).filter("img").attr("src", response.items[i].volumeInfo.imageLinks.thumbnail)
 //Harry Potter and the Sorcerer's Stone
+//Glow in the Dark
+//Harry Potter and the Prisoner of Azkaban
+//Harry Potter and the Philosopher's Stone
+//Harry Potter and the Order of the Phoenix
 
   // Used information by the the following urls:
   //http://stackoverflow.com/questions/6354149/css-divs-overlapping-how-do-i
@@ -79,6 +83,8 @@ function handleResponse(response){
   //http://api.jquery.com/checkbox-selector/
   //http://api.jquery.com/val/
   //http://api.jquery.com/submit/
+  //http://api.jquery.com/hide/
+  //http://api.jquery.com/filter/
 
 
 
