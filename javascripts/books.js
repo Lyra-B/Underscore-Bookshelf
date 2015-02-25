@@ -24,24 +24,26 @@ function handleResponse(response){
     var imgElement = $(html);
     $("#bookshelf").append(imgElement);
     $("#bookshelf div").addClass("book");
-    // $("#bookshelf div").addId(i.id);
+    //$("#bookshelf div").addId(i.id);
   });
 
-  var highRated =_.filter(response.items, function(i){
-    var rating = i.volumeInfo.averageRating;
-    if (rating==4 || rating==5){
+  var book_array = $('.book')
+
+  var highRated =_.filter(book_objects, function(i){
+    // var rating = i.volumeInfo.averageRating;
+    if (i.rating==4 || i.rating==5){
       return i;
     }
   });
   //iterating over the highRated Array and then iterating again over the dom
   //div elements(with a class .book) and matching rating using an if statement
   //that examines if the image is of the same book with the rating.
-  var book_array = $('.book')
+
   _.each (highRated, function(highRatedBooks){
     // console.log("");
     for(var i = 0; i < book_array.length; i++) {
       //console.log("");
-      if ($(book_array[i]).find("img").attr("src") === highRatedBooks.volumeInfo.imageLinks.thumbnail){
+      if ($(book_array[i]).find("img").attr("src") === highRatedBooks.image){
         $(book_array[i]).addClass("hot");
       }
     }
@@ -50,28 +52,22 @@ function handleResponse(response){
   //finally appending the span which will contain the star only in the divs that
   // have the class "hot".
   $(".hot").append("<span></span>");
-  //"<span class='ui-icon ui-icon-star'></span>"
-
   //.submit doesn't work because the dom isn't yet fully loaded.
   //$( document ).ready(function() handles this problem.
   $( document ).ready(function() {
-//.submit jquery function in order to submit the value
+  //.submit jquery function in order to submit the value
     $( "#titleForm" ).submit(function(event) {
       var bookTitle = $("#searchBox").val();
-//.preventDefault(); jquery function in order to prevent the form from \
-// sending a http request and refreshing the page
+      //.preventDefault(); jquery function in order to prevent the form from \
+      // sending a http request and refreshing the page
       event.preventDefault();
-      // $("#bookshelf").children().show();
       var imageArray = $("#bookshelf").children().children();
       $(imageArray).hide();
       //a for loop in order to match the submit value to the book titles
-      for(var i=0; i<response.items.length; i++){
-        if (bookTitle === response.items[i].volumeInfo.title){
+      for(var i=0; i<book_objects.length; i++){
+        if (bookTitle === book_objects[i].title){
           console.log("");
-          var imageToShow = $(imageArray).filter("img").attr("src", response.items[i].volumeInfo.imageLinks.thumbnail)
-          // $(imageArray).filter(function(img){
-          //   $img.attr("src") === response.items[i].volumeInfo.imageLinks.thumbnail;
-          // });
+          var imageToShow = $(imageArray).filter("img").attr("src", book_objects[i].image)
           $(imageToShow[0]).show();
         }
       }
@@ -79,8 +75,6 @@ function handleResponse(response){
   });
 }
 
-
-//$(imageArray).filter("img").attr("src", response.items[i].volumeInfo.imageLinks.thumbnail)
 //Harry Potter and the Sorcerer's Stone
 //Glow in the Dark
 //Harry Potter and the Prisoner of Azkaban
