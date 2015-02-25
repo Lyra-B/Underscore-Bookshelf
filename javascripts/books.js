@@ -1,4 +1,11 @@
 function handleResponse(response){
+
+  function Book(id, title, image, rating) {
+    this.id = id
+    this.title = title
+    this.image = image
+    this.rating = rating
+  }
   //console.log(response.items);
   var view = _.template("<div><img src= '<%= image %>' /></div>");
 
@@ -9,6 +16,7 @@ function handleResponse(response){
     var imgElement = $(html);
     $("#bookshelf").append(imgElement);
     $("#bookshelf div").addClass("book");
+    $("#bookshelf div").addId(i.id);
   });
 
   var highRated =_.filter(response.items, function(i){
