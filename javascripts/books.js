@@ -6,31 +6,21 @@ function handleResponse(response){
     this.image = image;
     this.rating = rating;
   }
-
   var book_objects = [];
 
   for (var i=0; i < response.items.length; i++){
     book_objects[i] = response.items[i].volumeInfo.title;
-    //book_objects.push(response.items[i].volumeInfo.title);
-    //return book_objects;
-    // var {response.items[i].volumeInfo.title} = new Book(response.items[i].id, response.items[i].volumeInfo.title, response.items[i].volumeInfo.imageLinks.thumbnail, response.items[i].volumeInfo.averageRating);
-    // book_objects.push(new Book(response.items[i].id, response.items[i].volumeInfo.title, response.items[i].volumeInfo.imageLinks.thumbnail, response.items[i].volumeInfo.averageRating));
   }
   for(var k=0; k<book_objects.length; k++){
     book_objects[k] = new Book(response.items[k].id, response.items[k].volumeInfo.title, response.items[k].volumeInfo.imageLinks.thumbnail, response.items[k].volumeInfo.averageRating);
   }
 
-      // this.id = response.items[i].id;
-      // this.title = response.items[i].volumeInfo.title;
-      // this.image = response.items[i].volumeInfo.imageLinks.thumbnail;
-      // this.rating = response.items[i].volumeInfo.averageRating;
-  //console.log(response.items);
   var view = _.template("<div><img src= '<%= image %>' /></div>");
 
-  _.each(response.items, function(i) {
+  _.each(book_objects, function(i) {
     //var imageLink = i.volumeInfo.imageLinks.thumbnail;
     // var div = _.template("<div>'<%= view %>'</div>")
-    var html = view({ image: i.volumeInfo.imageLinks.thumbnail});
+    var html = view({ image: i.image});
     var imgElement = $(html);
     $("#bookshelf").append(imgElement);
     $("#bookshelf div").addClass("book");
